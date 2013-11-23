@@ -5,6 +5,7 @@
 		//les attributs:
 		private $pseudo;
 		private $commentaire;
+		private $objet;
 		
 		//les methodes:
 		public function getPseudo() { //un getter
@@ -15,6 +16,10 @@
 			return $this->commentaire;
 		}
 		
+		public function getObjet(){
+			return $this->objet;
+		}
+		
 		public function getId(){
 			global $bdd;
 			$idmax=$bdd->query("SELECT MAX(id_note) FROM notes") or die("Erreur => MAX Note.construct($id)");
@@ -22,10 +27,12 @@
 			$ret = $result[0];
 			return $ret;
 		}
-		
-		public function __construct ($pseudo, $commentaire) { 
+
+		public function __construct ($pseudo, $commentaire, $objet) {
+				 
 			$this->pseudo = $pseudo;
 			$this->commentaire = $commentaire;
+			$this->objet = $objet;
 		}
 
 		public function save() {
@@ -35,9 +42,10 @@
 								'commentaire' => $this->commentaire, 
 								'pseudo_auteur' => $this->pseudo, 
 								))or die ("Erreur => Note.save()");
+				
 		}
-
 		
+
 	}
 
 ?>

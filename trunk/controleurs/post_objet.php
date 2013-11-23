@@ -7,7 +7,7 @@
 				$file_name =  basename($_POST['nom_image'],'.'.$info['extension']);
 				$extension_upload = strtolower( strrchr($_POST['nom_image'], '.')  );
 				$id_image=md5($file_name);
-				$link_thumbnail = "images/objets/{$id_image}_thumbnail{$extension_upload}";
+				$link_thumbnail = "imgs/objets/{$id_image}_thumbnail{$extension_upload}";
 				
 				$nouvel_objet = new Objets($_POST['nom_objet'], $_SESSION['login_entreprise'],$_POST['categorie_objet'],$_POST['description'],$link_thumbnail);
 				$nouvel_objet->save();

@@ -5,7 +5,6 @@
 		//les attributs:
 		//$bdd;
 
-		private $id;
 		private $nom;
 		private $proprietaire;
 		private $categorie;
@@ -29,7 +28,9 @@
 			return $this->description;
 		}
 
-		//img?
+		public function getImg() {
+			return $this->img;
+		}
 
 		//Un constructeur
 		public function __construct ($nom, $proprietaire,$categorie,$description,$img) { 
@@ -103,7 +104,27 @@
 			return $stack;
 
 		}
-
+		
+		public function getLastInsertedObjet() {
+			global $bdd;
+			$req = $bdd -> query('SELECT * FROM objets WHERE id_objet = (SELECT MAX(id_objet) FROM objets)');
+			$tuple = $req->fetch();
+			 
+			 /*$info_objet = $req -> fetch();
+			
+			$ret = array(
+					'id_objet'=> $info_objet['id_objet'],
+					'nom_objet'=> $info_objets['nom_objet'],
+					'nom_proprietaire'=>$info_objet['nom_proprietaire'],
+					'categorie_objet'=>$info_objet['categorie_objet'],
+					'description_objet'=>$info_objet['description_objet'],
+					'img_objet'=>$info_objet['img_objet']
+					);
+			*/		
+			$req->closeCursor();	
+			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['description_objet'], $tuple['img_objet']);
+		}
+			
 		
 	}
 ?>

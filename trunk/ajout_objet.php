@@ -64,16 +64,7 @@
 							echo '<option value="'.$une_categorie['nom_categorie'].'">'.$une_categorie['nom_categorie'].'</option>';
 						}
 						$categories->closeCursor();
-						/*$categorie = array('Vehicule', 'Cheval');
-						$categorie_name = array('cat_vehicule', 'cat_cheval');
 						
-							for($i = 0; $i<count($categorie);$i++){
-								if (isset($_SESSION['ajout_objet.categorie_objet']) and $_SESSION['ajout_objet.categorie_objet'] == $categorie_name[i]){
-									echo '<option value="' . $categorie_name[$i] . '" selected >' . $categorie[$i] . '</OPTION>';
-								}else{
-									echo '<option value="' . $categorie_name[$i] . '">' . $categorie[$i] . '</OPTION>';
-								}
-							}*/
 					?>
 				</select>
 			</p>
@@ -105,12 +96,12 @@
 </div>
 		<?php include("include/footer.php");?>
 
-		<!-- Including The jQuery Library -->
+		<!-- Inclure JQuery -->
         <script src="scripts/jquery.js"></script>
 
-        <!-- Including the HTML5 Uploader plugin -->
+        <!-- Inclure le plugin HTML5 Uploader -->
         <script src="scripts/jquery.filedrop.js"></script>
-              <!-- The main script file -->
+              <!-- Le script principal de la dropbox -->
 		<script src="scripts/script_dropbox.js"></script>
 	<?php 
 	//}
