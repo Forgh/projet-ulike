@@ -26,17 +26,7 @@
 			
 			
 			<div class="accueilDroite">
-				<div class="liste_objet_vote">
-				
-						<img src="css/design/like.png"></img>
-						<p class="likesNumber">3526</p>
-						<p class="space"></p>
-						<p class="dislikesNumber">455</p><img src="css/design/dislike.png" ></img>
-				</div>
-				<p><span class="presentationObjetLbl">Nom:</span><span class="presentationObjetNom">Vase</span></p>
-				<p><span class="presentationObjetLbl">Categorie:</span>Mobilier</p>
-				<p><span class="presentationObjetLbl">Description:</span>Ce vase en acier inoxydable résiste au temps, aux chocs et aux liquides corrosif. Idéal pour pouvoir y placer des plantes.</p>
-			</div>
+				<?php include('controleurs/highlight_objet.php');?>
 		</div>	
 		
 		<?php include("include/footer.php");?>
