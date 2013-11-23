@@ -54,8 +54,8 @@ commentaire text(1000),
 pseudo_auteur varchar(25) CHARACTER SET UTF8 COLLATE utf8_general_ci,
 CONSTRAINT pk_notes PRIMARY KEY (id_note),
 INDEX (pseudo_auteur),
-INDEX (id_objet_source),
-CONSTRAINT fk_notes_nomobjetsource FOREIGN KEY (nom_objet_source) REFERENCES objets(nom_objet_source),
+INDEX (nom_objet_source),
+CONSTRAINT fk_notes_nomobjetsource FOREIGN KEY (nom_objet_source) REFERENCES objets(nom_objet),
 CONSTRAINT fk_notes_auteur FOREIGN KEY (pseudo_auteur) REFERENCES membres(pseudo_membre))
 engine=innodb CHARACTER SET UTF8 COLLATE utf8_unicode_ci;
 
