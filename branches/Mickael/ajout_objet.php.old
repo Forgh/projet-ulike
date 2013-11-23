@@ -1,0 +1,93 @@
+<?php session_start(); ?>
+<DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="css/style.css" type="text/css"/>
+		<link rel="stylesheet" href="css/dropbox.css" type="text/css"/>
+
+</head>
+<body>
+		<?php include("include/entete.php"); ?>
+
+<div id="bodycentered">
+<h2>Formulaire d'ajout d'objet</h2>
+
+
+ <?php
+	/*if (!isset($_SESSION['login_entreprise'])){
+		echo "Désolé vous ne pouvez pas ajouter d'objet sans être logué.";
+	}
+	else {*/
+ ?>
+ 
+		<form class="formulaire" method="POST" enctype="multipart/form-data" action="controleurs/post_objet.php"  >
+			<p>	
+				<label for="nom_objet">Nom:</label>
+			</p>
+			<p>	
+				<input type="text" name="nom_objet">
+			</p>
+			
+			<p>
+				<label for="categorie_objet">Catégorie:</label>
+			</p>
+			<p>
+				<select name="categorie_objet" >
+					<?php 
+						/*include('modeles/connect.php');
+						$categories=$bdd->query('SELECT nom_categorie FROM categories');
+						while ($une_categorie = $categories->fetch())
+						{
+							echo '<option value="'.$une_categorie['nom_categorie'].'">'.$une_categorie['nom_categorie'].'</option>';
+						}
+						$categories->closeCursor();
+						/*$categorie = array('Vehicule', 'Cheval');
+						$categorie_name = array('cat_vehicule', 'cat_cheval');
+						
+							for($i = 0; $i<count($categorie);$i++){
+								if (isset($_SESSION['ajout_objet.categorie_objet']) and $_SESSION['ajout_objet.categorie_objet'] == $categorie_name[i]){
+									echo '<option value="' . $categorie_name[$i] . '" selected >' . $categorie[$i] . '</OPTION>';
+								}else{
+									echo '<option value="' . $categorie_name[$i] . '">' . $categorie[$i] . '</OPTION>';
+								}
+							}*/
+					?>
+				</select>
+			</p>
+			<textarea name="description"></textarea>
+				
+			<p>   
+				 <label for="dropbox">Fichier:</label>
+			</p>
+			
+			<p>
+				<div id="dropbox">
+		    		<span class="message"> Veuillez glisser ici une image... <br /></span>
+        		</div>
+        	</p>
+		
+			<p>
+				<div class="msgObligatoire">Tout les champs sont obligatoires.</div>
+			</p>
+			<p>
+				<input type="submit" value="ajouter" >
+			</p>
+		</form>
+</div>
+		<?php include("include/footer.php");?>
+
+		<!-- Including The jQuery Library -->
+        <script src="scripts/jquery.js"></script>
+
+        <!-- Including the HTML5 Uploader plugin -->
+        <script src="scripts/jquery.filedrop.js"></script>
+              <!-- The main script file -->
+		<script src="scripts/script_dropbox.js"></script>
+	<?php 
+	//}
+	?>	
+</body>
+</html>
+
