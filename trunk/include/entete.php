@@ -16,10 +16,10 @@ _inputField.onkeyup=onKeyUpHandler;
 <header>
 	<img id="logo" src="imgs/logos_ulike_small.png" />
 <div id="search">
-		    <form name="form-test" id="form-test"
-		  action="javascript:alert('soumission de ' + document.getElementById('champ-texte').value)"
-		  style="margin-left: 50px; margin-top:20px">
-		  	<input type="search" id="champ-texte" name="champ-texte" placeholder="Rechercher..." >
+		    <form method="GET" name="form-test" id="form-test"
+		  action="search_results.php" enctype="multipart/form-data" 
+		  >
+		  	<input type="search" id="champ-texte" name="search" placeholder="Rechercher..." >
             <input type="submit" id="bouton-submit">
         </form>
 	</div>

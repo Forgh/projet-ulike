@@ -1,5 +1,7 @@
-<?php require_once('modeles/Objet.php');
-		require_once('modeles/Like.php');
+<?php 
+
+	require_once('modeles/Objet.php');
+	require_once('modeles/Like.php');
 		
 	$carac_objet=Objet::getLastInsertedObjet();
 	//Recupération des données
