@@ -108,20 +108,9 @@
 		public function getLastInsertedObjet() {
 			global $bdd;
 			$req = $bdd -> query('SELECT * FROM objets WHERE id_objet = (SELECT MAX(id_objet) FROM objets)');
-			$tuple = $req->fetch();
-			 
-			 /*$info_objet = $req -> fetch();
-			
-			$ret = array(
-					'id_objet'=> $info_objet['id_objet'],
-					'nom_objet'=> $info_objets['nom_objet'],
-					'nom_proprietaire'=>$info_objet['nom_proprietaire'],
-					'categorie_objet'=>$info_objet['categorie_objet'],
-					'description_objet'=>$info_objet['description_objet'],
-					'img_objet'=>$info_objet['img_objet']
-					);
-			*/		
+			$tuple = $req->fetch();	
 			$req->closeCursor();	
+			
 			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['description_objet'], $tuple['img_objet']);
 		}
 		
@@ -131,6 +120,12 @@
 			$req->execute(array('%'.$search.'%','%'.$search.'%','%'.$search.'%','%'.$search.'%'));
 			
 			return $req;
+		}
+
+		public function seekAllCategories(){
+			global $bdd;
+			$categories=$bdd->query('SELECT nom_categorie FROM categories');
+			return $categories;
 		}
 		
 			

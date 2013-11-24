@@ -35,24 +35,11 @@ function check_objet($objet) {
 
 function objet_taken($nom){
 	require('../modeles/connect.php');
-					$ok = true;
+	$ok = true;
 	
 	$req = $bdd -> prepare('SELECT *  FROM objets WHERE nom_objet=?');
 	$req -> execute(array($nom)) or $ok == false; 
 	return (($req->rowCount() >= 1) && $ok);
-				
-	/*require('../modeles/Membre.php');
-	require('../modeles/Entreprise.php');
-		
-	 $entreprise = Entreprise::existe($nom);
-	 $membre = Membre::existe($nom);
-	 
-	 if(!$entreprise && !$membre){
-	 	return false;
-	 }
-	 else {
-	 	return true;
-	 }*/
 }	 
 	 
 if (@$_REQUEST['action'] == 'check_objet' && isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {

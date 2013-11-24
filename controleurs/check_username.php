@@ -35,27 +35,14 @@ function check_username($username) {
 
 function username_taken($nom){
 	require('../modeles/connect.php');
-					$ok = true;
+	$ok = true;
 	
 	$req = $bdd -> prepare('SELECT *  FROM entreprises WHERE nom_entreprise=?');
 	$req -> execute(array($nom)) or $ok == false; 
-			$req2 = $bdd -> prepare('SELECT *  FROM membres WHERE pseudo_membre=?');
-			$req2 -> execute(array($nom)) or $ok == false;
+	$req2 = $bdd -> prepare('SELECT *  FROM membres WHERE pseudo_membre=?');
+	$req2 -> execute(array($nom)) or $ok == false;
 
-			return (($req->rowCount() >= 1) && $ok && ($req->rowCount() >= 1));
-				
-	/*require('../modeles/Membre.php');
-	require('../modeles/Entreprise.php');
-		
-	 $entreprise = Entreprise::existe($nom);
-	 $membre = Membre::existe($nom);
-	 
-	 if(!$entreprise && !$membre){
-	 	return false;
-	 }
-	 else {
-	 	return true;
-	 }*/
+	return (($req->rowCount() >= 1) && $ok && ($req2->rowCount() >= 1));
 }	 
 	 
 if (@$_REQUEST['action'] == 'check_username' && isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
