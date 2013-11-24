@@ -57,14 +57,7 @@
 			<p>	
 				<select id="categorie_objet" name="categorie_objet" >
 					<?php 
-						include('modeles/connect.php');
-						$categories=$bdd->query('SELECT nom_categorie FROM categories');
-						while ($une_categorie = $categories->fetch())
-						{
-							echo '<option value="'.$une_categorie['nom_categorie'].'">'.$une_categorie['nom_categorie'].'</option>';
-						}
-						$categories->closeCursor();
-						
+						require_once('controleurs/categories.php');
 					?>
 				</select>
 			</p>
