@@ -1,5 +1,5 @@
 <?php
-	include('../modeles/connect.php');
+	include('modeles/connect.php');
 
 	class Objet {
 		//les attributs:
