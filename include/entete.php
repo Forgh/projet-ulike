@@ -1,18 +1,3 @@
-<script type="text/javascript">
-window.onload = function(){initAutoComplete(document.getElementById('form-test'),
-	document.getElementById('champ-texte'),document.getElementById('bouton-submit'))};
-
-
-document.onkeydown=keyDownHandler;
-
-_inputField.onkeyup=onKeyUpHandler;
-
- nouveauDiv.onmousedown=divOnMouseDown;
-    nouveauDiv.onmouseover=divOnMouseOver;
-    nouveauDiv.onmouseout=divOnMouseOut;
-</script>
-
-
 <header>
 	<img id="logo" src="imgs/logos_ulike_small.png" />
 <div id="search">
