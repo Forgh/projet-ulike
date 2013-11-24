@@ -124,6 +124,15 @@
 			$req->closeCursor();	
 			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['description_objet'], $tuple['img_objet']);
 		}
+		
+		public function getLikeObjet($search) {
+			global $bdd;
+			$req = $bdd -> prepare('SELECT * FROM objets WHERE nom_objet LIKE ? OR nom_proprietaire LIKE ? OR categorie_objet LIKE ? OR description_objet LIKE ? LIMIT 0,10');
+			$req->execute(array('%'.$search.'%','%'.$search.'%','%'.$search.'%','%'.$search.'%'));
+			
+			return $req;
+		}
+		
 			
 		
 	}
