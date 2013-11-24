@@ -10,8 +10,8 @@
 	<body>
 		<?php include("include/entete.php"); ?>
 		<div id="bodycentered" >
-			<h2>Votre objet a correctement été ajouté.</h2>
-			<p>Vous pouvez naviguer sur le site à votre convenance.</p>
+			<h2>Opération réussie.</h2>
+			<p>Vous pouvez désormais naviguer sur le site à votre convenance.</p>
 		</div>
 	</body>
 </html>

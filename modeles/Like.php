@@ -76,7 +76,7 @@
 			$number_likes=0;
 			if($req->rowCount()!=0){
 				while($nom_note = $req->fetch()){
-					$req2 = $bdd->prepare('SELECT SUM(type_like) FROM likes WHERE origine_like = ? AND type_like=0');
+					$req2 = $bdd->prepare('SELECT COUNT(id_like) FROM likes WHERE origine_like = ? AND type_like=0');
 					$req2 -> execute(array($nom_note));
 					$number_likes+=$req2->fetchColumn();
 				}

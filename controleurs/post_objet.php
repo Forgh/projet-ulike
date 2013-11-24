@@ -1,7 +1,7 @@
 <?php
 				require('modeles/Objet.php');
 				
-				//On rename le fichier avec un nom hashé en md5 (histoire d'éviter les noms de fichiers foireux ...)
+				//On rename le fichier avec un nom hashé en md5 (histoire d'éviter les noms de fichiers foireux fait par les utilisateurs... Never Trust User Input)
 				//Le fichier a été renommé de manière identique lors de son upload en AJAX
 				$info = pathinfo($_POST['nom_image']);
 				$file_name =  basename($_POST['nom_image'],'.'.$info['extension']);
@@ -9,6 +9,7 @@
 				$id_image=md5($file_name);
 				$link_thumbnail = "imgs/objets/{$id_image}_thumbnail{$extension_upload}";
 				
+				//On en fait un objet... Objet, puis on le sauvegarde
 				$nouvel_objet = new Objet($_POST['nom_objet'], $_SESSION['login_entreprise'],$_POST['categorie_objet'],$_POST['description'],$link_thumbnail);
 				$nouvel_objet->save();
 				
