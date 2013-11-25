@@ -1,7 +1,7 @@
 CREATE TABLE membres (
 id_membre int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
 pseudo_membre varchar(25) CHARACTER SET UTF8 COLLATE utf8_general_ci NOT NULL UNIQUE,
-passwd_membre varchar(20) NOT NULL,
+passwd_membre varchar(100) NOT NULL,
 email_membre varchar(50) NOT NULL,
 confirmed_email TINYINT(1) NOT NULL DEFAULT 0,
 nom_membre varchar (20),
@@ -15,7 +15,7 @@ engine=innodb CHARACTER SET UTF8 COLLATE utf8_unicode_ci;
 CREATE TABLE entreprises (
 id_entreprise int(4) UNSIGNED NOT NULL AUTO_INCREMENT,
 nom_entreprise varchar(75) NOT NULL,
-passwd_entreprise varchar(20) NOT NULL,
+passwd_entreprise varchar(100) NOT NULL,
 siren_entreprise integer(9) NOT NULL,
 nom_gerant varchar(25) NOT NULL,
 adresse_entreprise varchar(100) NOT NULL,

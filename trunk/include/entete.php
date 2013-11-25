@@ -10,10 +10,8 @@
 	
 	
 		<?php
-			if(isset($_SESSION['pseudo']) && isset($_SESSION['passwd'])) {
-				echo $_SESSION['pseudo'];
+			if(isset($_SESSION['login_entreprise']) || isset($_SESSION['pseudo_membre'])) {
 			?>
-				: 
 				
 				<div class="bouton header_out">
 					<a href="moncompte.php">Mon Compte</a>
@@ -28,7 +26,7 @@
 					<a href="login.php"> Se Connecter </a>
 				</div>
 				<div class="bouton header">
-					<a href="signup.php"> S'enregistrer</a>
+					<a href="inscription.php"> S'enregistrer</a>
 				</div>
 			<?php
 			}
