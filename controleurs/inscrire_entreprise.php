@@ -20,7 +20,7 @@
 		
 		include("../modeles/mail.php");
 		
-		$url = $SITE_BASE . 'controleurs/validation.php?id=' . sha1($GRAINE . $Ent->getNomGerant());
+		$url = $SITE_BASE . 'controleurs/validation.php?id=' . sha1($GRAINE  . "ENT" .  $Ent->getNomGerant());
 		$msg = 'Cliquez sur le lien pour activer votre compte:  <a href="' . $url .'">' . $url .'</a>';	
 		envoyer_mail($MAIL_ACTIVATION,$Ent->getEmail(), "Activation de votre compte", $msg );
 		
@@ -35,6 +35,8 @@
 		} 
 		header("Location: ../inscription.php");
 	}
+	
+	
 	
 	
 ?>

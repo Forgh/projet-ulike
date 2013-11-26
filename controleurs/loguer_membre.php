@@ -9,10 +9,10 @@
 		$Ent = Membre::getMembreParPseudo($_POST['pseudo']);
 
 		
-		if($Ent !=null and $Ent->isEmailConfirmed() == true ){ //existe
+		if($Ent !=null){ //existe
 			$shaOne = sha1($_POST['passwd']);
 			//echo $_POST['passwd_ent'], "?<br>", $shaOne, "<br>", $Ent->getPasswd();
-			if (strnatcmp($shaOne,$Ent->getPasswd()) == 0){
+			if (strnatcmp($shaOne,$Ent->getPasswd()) == 0 and $Ent->isEmailConfirmed() == true){
 				$_SESSION['pseudo_membre'] = $_POST['pseudo'];
 				//ok
 				echo "ok, vous êtes bien logué";
@@ -29,7 +29,7 @@
 		}
 	}else{
 		//login manquant
-		echo "Login inconu";
+		echo "Veuillez rentrer un pseudo.";
 	}
 
 	
