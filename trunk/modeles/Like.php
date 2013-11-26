@@ -36,18 +36,25 @@
 			
 		}
 		
-		public static function getLikeById ($id){
+		public static function getLikesByOrigin ($id){
 			global $bdd;
 
-			$req = $bdd -> prepare('SELECT * FROM likes WHERE id= ?');
+			$req = $bdd -> prepare('SELECT * FROM likes WHERE origine_like= ? AND type_like=1');
 			$req -> execute(array($id));
+			$tuple = $req->fetchAll();
 			
-			if($req->rowCount()==0) return null;
-			$tuple = $req->fetch();
-			
-			return new Like($tuple['contenu_like'],$tuple['origine_like'],$tuple['type_like'],$tuple['id_like']);
+			return $tuple;
 		}	
 
+		public static function getDislikesByOrigin ($id){
+			global $bdd;
+
+			$req = $bdd -> prepare('SELECT * FROM likes WHERE origine_like= ? AND type_like=0');
+			$req -> execute(array($id));
+			$tuple = $req->fetchAll();
+			
+			return $tuple;
+		}	
 
 
 		public function getNumberOfLikes($nom){

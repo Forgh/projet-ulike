@@ -76,23 +76,7 @@
 			return $req->rowCount();
 		}	
 
-		public function rechercheDesObjets ($recherche){
-			global $bdd;
-			$req = $bdd -> prepare('SELECT * FROM objets WHERE nom_objet LIKE :nom_objet OR description_objet LIKE :nom_objet OR nom_proprietaire LIKE :nom_objet');
-			$req -> execute(array(
-									':nom_objet'=> '%'.$recherche.'%',
-									':description_objet'=> '%'.$recherche.'%',
-									':nom_proprietaire'=> '%'.$recherche.'%',
-									));	
-			
-			$stack= array();
-			while($ajouter_nom = $req -> fetch()){
-				array_push($stack,$ajouter_nom);
-			}
-			
-			return $stack;
-		}
-		
+				
 		public function getEveryNames () {
 			global $bdd;
 			$req = $bdd -> query('SELECT nom_objet FROM objets');
@@ -119,13 +103,13 @@
 			$req = $bdd -> prepare('SELECT * FROM objets WHERE nom_objet LIKE ? OR nom_proprietaire LIKE ? OR categorie_objet LIKE ? OR description_objet LIKE ? LIMIT 0,10');
 			$req->execute(array('%'.$search.'%','%'.$search.'%','%'.$search.'%','%'.$search.'%'));
 			
-			return $req;
+			return $req->fetchAll();
 		}
 
 		public function seekAllCategories(){
 			global $bdd;
 			$categories=$bdd->query('SELECT nom_categorie FROM categories');
-			return $categories;
+			return $categories->fetchAll();
 		}
 		
 			
