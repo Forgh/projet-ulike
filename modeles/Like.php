@@ -83,7 +83,40 @@
 			}
 			return $number_likes;
 		}
+		
+		public function getNumberOfLikesForThisCategory($categorie, $categorie){
+			global $bdd;
 
+			$req= $bdd->prepare('SELECT id_note FROM notes WHERE nom_objet_source=?');
+			$req-> execute(array($nom));
+			
+			$number_likes=0;
+			if($req->rowCount()!=0){
+				while($nom_note = $req->fetch()){
+					$req2 = $bdd->prepare('SELECT COUNT(id_like) FROM likes WHERE origine_like = ? AND type_like=1 AND contenu_like = ?');
+					$req2 -> execute(array($nom_note, $categorie));
+					$number_likes+=$req2->fetchColumn();
+				}
+			}
+			return $number_likes;
+		}
+
+		public function getNumberOfDislikesForThisCategory($categorie, $categorie){
+			global $bdd;
+
+			$req= $bdd->prepare('SELECT id_note FROM notes WHERE nom_objet_source=?');
+			$req-> execute(array($nom));
+			
+			$number_likes=0;
+			if($req->rowCount()!=0){
+				while($nom_note = $req->fetch()){
+					$req2 = $bdd->prepare('SELECT COUNT(id_like) FROM likes WHERE origine_like = ? AND type_like=0 AND contenu_like = ?');
+					$req2 -> execute(array($nom_note, $categorie));
+					$number_likes+=$req2->fetchColumn();
+				}
+			}
+			return $number_likes;
+		}
 	}
 	
 ?>
