@@ -28,7 +28,7 @@
 		
 		
 		// GENERATION DE LA KEYCODE
-		$url = $SITE_BASE . 'controleurs/validation.php?id=' . sha1($GRAINE . $Ent->getPseudo());
+		$url = $SITE_BASE . 'controleurs/validation.php?id=' . sha1($GRAINE  . "MEM" . $Ent->getPseudo());
 		$msg = 'Cliquez sur le lien pour activer votre compte:  <a href="' . $url .'">' . $url .'</a><br>';	
 		envoyer_mail($MAIL_ACTIVATION,$Ent->getEmail(), "Activation de votre compte", $msg );
 		
