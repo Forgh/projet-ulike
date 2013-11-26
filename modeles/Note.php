@@ -37,12 +37,21 @@
 
 		public function save() {
 				global $bdd;
-				$nouveau_membre = $bdd -> prepare('INSERT INTO notes(commentaire, pseudo_auteur) VALUES (:commentaire, :pseudo_auteur)');
+				$nouveau_membre = $bdd -> prepare('INSERT INTO notes(nom_objet_source, commentaire, pseudo_auteur) VALUES (:nom_objet_source, :commentaire, :pseudo_auteur)');
 				$nouveau_membre -> execute(array(
+				
 								'commentaire' => $this->commentaire, 
 								'pseudo_auteur' => $this->pseudo, 
 								))or die ("Erreur => Note.save()");
 				
+		}
+		
+		public function fetchNotesByObjet($nom){
+			global $bdd;
+			$req = $bdd->prepare('SELECT * FROM notes WHERE nom_objet_source = ? ORDER BY id_note DESC');
+			$req = $bdd->execute(array($nom));
+			
+			return $req->fetchAll();
 		}
 		
 

@@ -34,6 +34,13 @@ function check_username($username) {
 }
 
 function username_taken($nom){
+	/*require('..modeles/Membre.php');
+	require('..modeles/Entreprise.php');
+	
+	$entreprise = Entreprise::existe($nom);
+	$membre = Membre::existe($nom);
+	
+	return ($membre and $entreprise);*/
 	require('../modeles/connect.php');
 	$ok = true;
 	

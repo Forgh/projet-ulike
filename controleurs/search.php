@@ -3,8 +3,8 @@
  require_once('modeles/Objet.php');
  
  $results=Objet::getLikeObjet($search);
-	if($results->rowCount() > 0){
-		 while($carac_objet = $results->fetch()){
+	if(count($results)> 0){
+		 foreach($results as $carac_objet) { 
 		 ?>	
 		 
 		 <div class="liste_objet_pair">	

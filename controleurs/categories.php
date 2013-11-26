@@ -3,10 +3,9 @@
 	
 	$categories = Objet::seekAllCategories();
 	
-    while ($une_categorie = $categories->fetch())
+    foreach($categories as $une_categorie)  
 	{
 		echo '<option value="'.$une_categorie['nom_categorie'].'">'.$une_categorie['nom_categorie'].'</option>';
 	}
 	
-	$categories->closeCursor();
 ?>

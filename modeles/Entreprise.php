@@ -135,13 +135,14 @@
 			return new Entreprise($tuple['nom_entreprise'], $tuple['passwd_entreprise'], $tuple['siren_entreprise'], $tuple['nom_gerant'], $tuple['adresse_entreprise'], $tuple['code_postal_entreprise'], $tuple['pays_entreprise'], $tuple['email_entreprise'], $tuple['confirmed_email']);
 		}	
 	
-		public static function existe ($nom){ //0: ok & 1: pas ok
+		public static function existe ($nom){ 
 			global $bdd;
 			$ok = true;
 			$req = $bdd -> prepare('SELECT *  FROM entreprises WHERE nom_entreprise=?');
-			$req -> execute(array($nom)) or $ok == false;
+			$req -> execute(array($nom));
+			$ret = $req->fetchAll();
 
-			return ($req->rowCount() >= 1) && $ok;
+			return (count($ret)!=0); // erreur
 		}	
 
 	}

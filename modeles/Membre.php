@@ -128,9 +128,10 @@
 			global $bdd;
 			$ok = true;
 			$req = $bdd -> prepare('SELECT * FROM membres WHERE pseudo_membre=?');
-			$req -> execute(array($nom)) or $ok == false;
+			$req -> execute(array($nom));
+			$ret = $req->fetchAll();
 
-			return $req->rowCount();// >= 1) and $ok; // erreur
+			return (count($ret)!=0); // erreur
 		}	
 		
 	}
