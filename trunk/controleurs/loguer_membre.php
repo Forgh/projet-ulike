@@ -7,6 +7,7 @@
 		
 	if(isset($_POST['pseudo'])){
 		$Ent = Membre::getMembreParPseudo($_POST['pseudo']);
+
 		
 		if($Ent !=null and $Ent->isEmailConfirmed() == true ){ //existe
 			$shaOne = sha1($_POST['passwd']);
@@ -24,7 +25,7 @@
 			}
 		}else{
 			//login incorrect
-			echo "Désolé mais le login ou le mot de passe est incorrect.";
+			echo "Désolé mais le login ou le mot de passe est incorrect.²";
 		}
 	}else{
 		//login manquant

@@ -13,8 +13,15 @@
 	$megacondition = ($nb == 0 and empty($_POST['pseudo'])==false and empty($_POST['passwd'])==false and empty($_POST['passwdconfirm'])==false and $_POST['passwd'] == $_POST['passwdconfirm'] and empty($_POST['nom'])==false and empty($_POST['mail'])==false and empty($_POST['prenom'])==false and empty($_POST['age'])==false and empty($_POST['sexe'])==false);// and (preg_match("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$",$_POST['passwd']));
 
 	if ($megacondition){// on verif que l'objet est nouveau
+		if ($_POST['sexe'] == "sexe_m"){
+			$sexe = 'M';
+		}elseif ($_POST['sexe'] == "sexe_f"){
+			$sexe = 'F';
+		}else{
+			$sexe = 'A';
+		}
 		
-		$Ent = new Membre($_POST['pseudo'], sha1($_POST['passwd']), $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['age'], $_POST['sexe'],0);
+		$Ent = new Membre($_POST['pseudo'], sha1($_POST['passwd']), $_POST['mail'], $_POST['nom'], $_POST['prenom'], $_POST['age'], $sexe,0);
 		$ret = $Ent->save();
 
 		include("../modeles/mail.php");

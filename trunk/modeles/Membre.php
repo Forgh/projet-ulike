@@ -47,7 +47,8 @@
 		}
 		
 		public function isEmailConfirmed() { //un getter
-			if ($this->emailConfirme == 0){
+			echo "?",$this->emailConfirme,"?";
+			if ($this->emailConfirme == 1){
 				return true;
 			}else{
 				return false;	
@@ -100,8 +101,9 @@
 			if($req->rowCount() == 0) return null;
 			$tuple =  $req->fetch();
 			
-			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['confirmed_email'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['id_membre']);
-		}	
+			
+			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['confirmed_email']);
+		}
 		
 		public static function getMembreParEmail ($email){
 			global $bdd;
@@ -111,7 +113,7 @@
 			if($req->rowCount() == 0) return null;
 			$tuple =  $req->fetch();
 			
-			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['confirmed_email'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['id_membre']);
+			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['confirmed_email']);
 		}	
 		
 		public function setConfirmed() {
