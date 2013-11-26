@@ -47,7 +47,7 @@
 		}
 		
 		public function isEmailConfirmed() { //un getter
-			echo "?",$this->emailConfirme,"?";
+		
 			if ($this->emailConfirme == 1){
 				return true;
 			}else{
@@ -61,6 +61,7 @@
 			$this->email = $email;
 			$this->hashCode = $passwd;
 			$this->age = $age;
+			$this->prenom = $prenom;
 			$this->sexe = $sexe;
 			$this->emailConfirme = $emailConfirme;
 			//$this->id = (mysql_query("SELECT MAX(id_membre) FROM likes") or die("Erreur => MAX Objets.construct($id)"))+1;
@@ -99,8 +100,9 @@
 			$req -> execute(array($pseudo));
 			
 			if($req->rowCount() == 0) return null;
-			$tuple =  $req->fetch();
+			$tuple =  $req->fetch(PDO::FETCH_OBJ);
 			
+			//echo "?", $tuple['pseudo_membre'],"?";
 			
 			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['confirmed_email']);
 		}
