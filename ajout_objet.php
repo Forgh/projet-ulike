@@ -43,7 +43,7 @@
 	else {*/
  ?>
  	<div id="ajoutobjet">
-		<form method="POST" enctype="multipart/form-data" action="controleurs/post_objet.php"  >
+		<form method="POST" enctype="multipart/form-data" id="cibleFormAjout" action="controleurs/post_objet.php"  >
 			<p>	
 				<label for="nom_objet">Nom de votre objet :</label>	
 			</p>

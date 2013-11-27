@@ -91,7 +91,7 @@
 			return $number_likes;
 		}
 		
-		public function getNumberOfLikesForThisCategory($categorie, $categorie){
+		public function getNumberOfLikesForThisCategory($nom, $categorie){
 			global $bdd;
 
 			$req= $bdd->prepare('SELECT id_note FROM notes WHERE nom_objet_source=?');
@@ -108,7 +108,7 @@
 			return $number_likes;
 		}
 
-		public function getNumberOfDislikesForThisCategory($categorie, $categorie){
+		public function getNumberOfDislikesForThisCategory($nom, $categorie){
 			global $bdd;
 
 			$req= $bdd->prepare('SELECT id_note FROM notes WHERE nom_objet_source=?');
