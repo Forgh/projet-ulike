@@ -5,6 +5,19 @@
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="css/style.css" />
 		<title> ULike </title>
+		<script>function afficher() {
+    $.ajax({
+    url: "controleur/show_note.php",
+    ifModified:true,
+    async: true,
+    success: function(content){
+ 
+           $('#otherMarks').html(content);
+         }
+    });
+    setTimeout(afficher, 2000);
+}</script>
+		
 	</head>
 	
 	<body>
@@ -26,7 +39,7 @@
 				</div>
 			</div>
 			<div class="moitieGauche border">	
-				<img class="photoObjet" src="<?php echo $img_objet; ?>" alt="<?echo $nom_objet; ?>" width='256' height='256'></img>
+				<img class="photoObjet" src="<?php echo $img_objet; ?>" alt="<?php echo $nom_objet; ?>" width='256' height='256'></img>
 			</div>
 			<div id="zoneenregistre">
 	<ul id="zonelike">
@@ -56,8 +69,12 @@
 		?>
 	</ul>
 </div>
-			<p>			<a href="ajout_objet.php" >En voir plus... [+]</a>
+			<p>			
+			<form method="post" enctype="multipart/form-data" onsubmit="afficher()">						
+				<input type="submit" value="En voir [+]...">
+			</form>
 </p>
+<div id="otherMarks"></div>
 		</div>
 		
 		<?php include("include/footer.php");?>

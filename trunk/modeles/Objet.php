@@ -62,10 +62,10 @@
 			$req = $bdd -> prepare('SELECT * FROM membres WHERE nom_objet=?');
 			$req -> execute(array($nom));
 			
-			if(mysql_nums_rows()==0) return null;
-			$tuple = mysql_fetch_array($req);
+			//if($req->rowCount()==0) return null;
+			$tuple = $req->fetch();
 			
-			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['img_objet']);
+			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['description_objet'], $tuple['img_objet']);
 		}
 
 		public static function existe ($nom){
