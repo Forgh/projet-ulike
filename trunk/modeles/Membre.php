@@ -100,7 +100,7 @@
 			$req -> execute(array($pseudo));
 			
 			if($req->rowCount() == 0) return null;
-			$tuple =  $req->fetch(PDO::FETCH_OBJ);
+			$tuple =  $req->fetch(); //(PDO::FETCH_OBJ);
 			
 			//echo "?", $tuple['pseudo_membre'],"?";
 			
