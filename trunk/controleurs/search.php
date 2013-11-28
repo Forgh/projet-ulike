@@ -5,12 +5,12 @@
  $results=Objet::getLikeObjet($search);
 	if(count($results)> 0){
 		 foreach($results as $carac_objet) {
-		 	$link=str_replace(' ','_',$carac_objet['nom_objet']); 
+		 	//$link=str_replace(' ','_',$carac_objet['nom_objet']); 
 		 ?>	
 		 
 		 <div class="liste_objet_pair">	
 					
-				<a href="presentation.php?objet=<?php echo $link; ?>"><img class="liste_objet_picture" src="<?php echo $carac_objet['img_objet']; ?>"  width="64px" height="64px"/></a>
+				<a href="presentation.php?objet=<?php echo $carac_objet['id_objet']; ?>"><img class="liste_objet_picture" src="<?php echo $carac_objet['img_objet']; ?>"  width="64px" height="64px"/></a>
 					
 		 		<div class="liste_objet_info">
 						

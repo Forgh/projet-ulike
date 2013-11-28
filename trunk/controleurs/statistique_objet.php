@@ -1,13 +1,13 @@
 <?php
 if(isset($_GET['objet'])){
-	$nom_objet=str_replace('_',' ',$_GET['objet']); 
+	//$nom_objet=str_replace('_',' ',$_GET['objet']); 
 	
-	
+	$id = $_GET['objet'];
 	require('modeles/Objet.php');
 	require('modeles/Note.php');
 	require('modeles/Like.php');
 	
-	$carac_objet=Objet::getObjetParNom($nom_objet);
+	$carac_objet=Objet::getObjetById($id);
 	
 		$nom_objet = $carac_objet->getNom();
 		$categorie_objet = $carac_objet->getCategorie();
