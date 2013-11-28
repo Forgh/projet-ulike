@@ -13,10 +13,10 @@
 			if(isset($_SESSION['login_entreprise']) || isset($_SESSION['pseudo_membre'])) {
 			?>
 				
-				<div class="bouton header_out">
+				<div class="bouton header">
 					<a href="moncompte.php">Mon Compte</a>
 				</div> 
-				<div class="bouton header">
+				<div class="bouton header_out">
 					<a href="deconnexion.php">Se Déconnecter</a>
 				</div>
 		<?php } 

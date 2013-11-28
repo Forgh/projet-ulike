@@ -1,6 +1,7 @@
 <?php
 	session_start();
 
+	include("../include/commun.php"
 	include("../modeles/Entreprise.php");
 
 		
@@ -14,7 +15,8 @@
 			if (strnatcmp($shaOne,$Ent->getPasswd()) == 0 and $Ent->isEmailConfirmed() == true){
 				$_SESSION['login_entreprise'] = $_POST['pseudo'];
 				//ok
-				echo "ok, vous êtes bien logué";
+				//echo "ok, vous êtes bien logué";
+				header("Location: ". $SITE_BASE . "moncompte.php");
 			}elseif ($Ent->isEmailConfirmed() == false){ 
 				//activation
 				echo "Vous devez d'abord activez votre compte. Un mail de confirmation vous sera renvoyé.";
