@@ -18,12 +18,10 @@
 ?>
 
 <form  class="formulaire" method="POST" enctype="multipart/form-data" <?php echo 'action="../controleurs/activation_mail.php?id=' . $param.'"'; ?>  >
-	<label for="login_validation">Login:</label>
-	<br>
-	<input type="text" name="login_validation" >
-	
-	<br>
-	<br>
+	<p>
+		<label for="login_validation">Pseudo ou nom du gérant:</label>
+		<input type="text" name="login_validation" >
+	</p>
 	
 	<input type="submit" value="Activer le compte">
 </form>

@@ -17,7 +17,12 @@
 				echo "ok, vous êtes bien logué";
 			}elseif ($Ent->isEmailConfirmed() == false){ 
 				//activation
-				echo "Vous devez d'abord activez votre compte.";
+				echo "Vous devez d'abord activez votre compte. Un mail de confirmation vous sera renvoyé.";
+				
+				/* MAIL */
+				include("../modeles/mail.php");
+				mail_activation_entreprise( $Ent );
+				
 			}else{
 				//Mdp incorrect
 				echo "Désolé mais le login ou le mot de passe est incorrect.²";
