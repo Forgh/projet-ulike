@@ -22,6 +22,10 @@
 			return $this->nom;
 		}
 
+		public function setNom($v) { //un setter
+			$this->nom  = $v;
+		}
+		
 		public function getPrenom() { //un getter
 			return $this->prenom;
 		}
@@ -44,6 +48,30 @@
 
 		public function getPasswd() { //un getter
 			return $this->hashCode;
+		}
+		
+		public function setPrenom($v) { 
+			 $this->prenom=$v;
+		}
+
+		public function setEmail($v) { 
+			 $this->email=$v;
+		}
+
+		public function setHashCode($v) { 
+			 $this->hashCode=$v;
+		}
+
+		public function setAge($v) { 
+			 $this->age=$v;
+		}
+
+		public function setSexe($v) { 
+			 $this->sexe=$v;
+		}
+
+		public function setPasswd($v) { 
+			 $this->hashCode=$v;
 		}
 		
 		public function isEmailConfirmed() { //un getter
@@ -82,6 +110,21 @@
 		public function save() {
 				global $bdd;
 				$nouveau_membre = $bdd -> prepare('INSERT INTO membres(pseudo_membre, passwd_membre, email_membre, confirmed_email, nom_membre, prenom_membre, date_naissance_membre, sexe_membre) VALUES (:pseudo_membre, :passwd_membre, :email_membre, :confirmed_email, :nom_membre, :prenom_membre, :date_naissance_membre, :sexe_membre)');
+				$nouveau_membre -> execute(array(
+								'pseudo_membre' => $this->pseudo, 
+								'passwd_membre' => $this->hashCode, 
+								'email_membre' => $this->email, 
+								'confirmed_email' => $this->emailConfirme, 
+								'nom_membre'=> $this->nom, 
+								'prenom_membre'=>$this->prenom, 
+								'date_naissance_membre'=> $this->age, 
+								'sexe_membre'=> $this->sexe
+								));
+		}
+		
+		public function update() {
+				global $bdd;
+				$nouveau_membre = $bdd -> prepare('UPDATE membres SET passwd_membre = :passwd_membre, email_membre = :email_membre, confirmed_email = :confirmed_email, nom_membre = :nom_membre, prenom_membre = :prenom_membre, date_naissance_membre = :date_naissance_membre, sexe_membre = :sexe_membre WHERE pseudo_membre=:pseudo_membre');
 				$nouveau_membre -> execute(array(
 								'pseudo_membre' => $this->pseudo, 
 								'passwd_membre' => $this->hashCode, 

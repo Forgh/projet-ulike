@@ -34,6 +34,10 @@
 			return $this->passwd;
 		}
 		
+		public function setPasswd ($pass) {
+			$this->passwd = $pass;
+		}
+		
 		public function getSiren () {
 			return $this->siren;
 		}
@@ -41,16 +45,39 @@
 			return $this->nomGerant;
 		}
 		
+		public function setSiren ($val) {
+			$this->siren = $val;
+		}
+		public function setNomGerant ($nom) {
+			$this->nomGerant = $nom;
+		}
+		
 		public function getAdresse () {
 			return $this->adresse;
+		}
+		
+		public function setAdresse ($adr) {
+			$this->adresse = $adr;
 		}
 		
 		public function getPays () {
 			return $this->pays;
 		}
 		
+		public function setPays ($pays) {
+			$this->pays = $pays;
+		}
+		
+		public function setCode ($pays) {
+			$this->code_postal = $pays;
+		}
+		
 		public function getEmail () {
 			return $this->email;
+		}
+		
+		public function setEmail ($mail) {
+			$this->email = $mail;
 		}
 		
 		/* LES TESTEURS */
@@ -92,6 +119,28 @@
 														'email_entreprise'=>$this->email,
 														'confirmed_email'=>  $this->confirmedEmail
 														)) or die ("Erreur => Entreprise.save()");;
+			}else{
+				return false; //pour savoir que donnee invalide
+			}
+		}
+		
+		//WARNING on verif pas l'existance du tupple
+		public function update() {
+			global $bdd;
+			
+			if ( empty($this->nom) == false){
+				$nouvelle_entreprise = $bdd -> prepare('UPDATE entreprises SET passwd_entreprise = :passwd_entreprise, siren_entreprise = :siren_entreprise, nom_gerant = :nom_gerant, adresse_entreprise = :adresse_entreprise, code_postal_entreprise = :code_postal_entreprise, pays_entreprise = :pays_entreprise, email_entreprise = :email_entreprise, confirmed_email=:confirmed_email WHERE nom_entreprise=:nom_entreprise');
+				$nouvelle_entreprise -> execute(array( 
+														'nom_entreprise'=>$this->nom,
+														'passwd_entreprise' => $this->passwd,
+														'siren_entreprise'=>$this->siren, 
+														'nom_gerant'=>$this->nomGerant, 
+														'adresse_entreprise'=>$this->adresse, 
+														'code_postal_entreprise'=> $this->code_postal, 
+														'pays_entreprise'=>$this->pays,
+														'email_entreprise'=>$this->email,
+														'confirmed_email'=>  $this->confirmedEmail
+														)) or die ("Erreur => Entreprise.update()");;
 			}else{
 				return false; //pour savoir que donnee invalide
 			}
