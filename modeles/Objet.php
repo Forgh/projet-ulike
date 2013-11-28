@@ -59,15 +59,26 @@
 
 		public static function getObjetParNom ($nom){
 			global $bdd;
-			$req = $bdd -> prepare('SELECT * FROM membres WHERE nom_objet=?');
+			$req = $bdd -> prepare('SELECT * FROM objets WHERE nom_objet=?');
 			$req -> execute(array($nom));
 			
-			//if($req->rowCount()==0) return null;
+			if($req->rowCount()==0) return null;
 			$tuple = $req->fetch();
 			
 			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['description_objet'], $tuple['img_objet']);
 		}
 
+
+		public function getObjetById($id) {
+			global $bdd;
+			$req = $bdd -> prepare('SELECT * FROM objets WHERE id_objet=?');
+			$req -> execute(array($id));
+			$tuple = $req->fetch();	
+			$req->closeCursor();	
+			
+			return new Objet($tuple['nom_objet'], $tuple['nom_proprietaire'], $tuple['categorie_objet'], $tuple['description_objet'], $tuple['img_objet']);
+		}
+		
 		public static function existe ($nom){
 			global $bdd;
 			$req = $bdd -> prepare('SELECT * AS compte FROM objets WHERE nom_objet=?');

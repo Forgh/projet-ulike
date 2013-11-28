@@ -4,19 +4,17 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="scripts/jquery.js"></script>
+		<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+		<script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
 		<title> ULike </title>
-		<script>function afficher() {
-    $.ajax({
-    url: "controleur/show_note.php",
-    ifModified:true,
-    async: true,
-    success: function(content){
- 
-           $('#otherMarks').html(content);
-         }
-    });
-    setTimeout(afficher, 2000);
-}</script>
+		<script>$(document).ready(function() {
+					var inputField= $('#id_objet').val();
+					$( "#afficher" ).click(function () {
+				   		$( "#otherMarks" ).load( 'controleurs/show_note.php?objet='+inputField );
+				    });
+				    });
+</script>
 		
 	</head>
 	
@@ -70,8 +68,9 @@
 	</ul>
 </div>
 			<p>			
-			<form method="post" enctype="multipart/form-data" onsubmit="afficher()">						
-				<input type="submit" value="En voir [+]...">
+			<form action="" method="post" enctype="multipart/form-data">	
+				<input type="hidden" id="id_objet" value="<?php echo $_GET['objet']; ?>"	>				
+				<input type="submit" id="afficher" value="En voir [+]...">
 			</form>
 </p>
 <div id="otherMarks"></div>
