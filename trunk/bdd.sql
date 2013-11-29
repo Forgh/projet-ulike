@@ -1,4 +1,4 @@
-CREATE TABLE membres (
+﻿CREATE TABLE membres (
 id_membre int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
 pseudo_membre varchar(25) CHARACTER SET UTF8 COLLATE utf8_general_ci NOT NULL UNIQUE,
 passwd_membre varchar(100) NOT NULL,
@@ -55,7 +55,7 @@ pseudo_auteur varchar(25) CHARACTER SET UTF8 COLLATE utf8_general_ci,
 CONSTRAINT pk_notes PRIMARY KEY (id_note),
 INDEX (pseudo_auteur),
 INDEX (nom_objet_source),
-CONSTRAINT fk_notes_nomobjetsource FOREIGN KEY (nom_objet_source) REFERENCES objets(nom_objet),
+CONSTRAINT fk_notes_nomobjetsource FOREIGN KEY (nom_objet_source) REFERENCES objets(nom_objet) ON DELETE CASCADE ON UPDATE CASCADE,
 CONSTRAINT fk_notes_auteur FOREIGN KEY (pseudo_auteur) REFERENCES membres(pseudo_membre))
 engine=innodb CHARACTER SET UTF8 COLLATE utf8_unicode_ci;
 
@@ -66,7 +66,7 @@ origine_like int(6) UNSIGNED NOT NULL,
 type_like TINYINT(1),
 CONSTRAINT pk_likes PRIMARY KEY (id_like),
 INDEX (origine_like),
-CONSTRAINT fk_likes_origine FOREIGN KEY (origine_like) REFERENCES notes(id_note))
+CONSTRAINT fk_likes_origine FOREIGN KEY (origine_like) REFERENCES notes(id_note) ON DELETE CASCADE ON UPDATE CASCADE)
 engine=innodb CHARACTER SET UTF8 COLLATE utf8_unicode_ci;
 
 INSERT INTO categories (nom_categorie) VALUES ('Image/Son');
@@ -75,10 +75,3 @@ INSERT INTO categories (nom_categorie) VALUES ('Smartphones');
 INSERT INTO categories (nom_categorie) VALUES ('Automobile');
 INSERT INTO categories (nom_categorie) VALUES ('Equipement Informatique');
 
-INSERT INTO entreprises (nom_entreprise,passwd_entreprise,siren_entreprise,nom_gerant,adresse_entreprise,code_postal_entreprise,pays_entreprise,email_entreprise,confirmed_email) VALUES ('Dall','password','011111111','Bidochon','909 avenue des arnaques','34000','France','lolilol@dall.com',1);
-INSERT INTO objets (nom_objet,nom_proprietaire,categorie_objet,description_objet,img_objet) VALUES ("XPS 14","Dall","Equipement Informatique","Ordinateur peu fiable","lolilol.png");
-INSERT INTO objets (nom_objet,nom_proprietaire,categorie_objet,description_objet,img_objet) VALUES ("XPS 17","Dall","Equipement Informatique","Ordinateur peu fiable","lolilol2.png");
-INSERT INTO objets (nom_objet,nom_proprietaire,categorie_objet,description_objet,img_objet) VALUES ("XPS 19","Dall","Equipement Informatique","Ordinateur peu fiable","lolilol3.png");
-INSERT INTO objets (nom_objet,nom_proprietaire,categorie_objet,description_objet,img_objet) VALUES ("Alienware DR890","Dall","Equipement Informatique","Ordinateur peu fiable","lolilol4.png");
-INSERT INTO objets (nom_objet,nom_proprietaire,categorie_objet,description_objet,img_objet) VALUES ("Serveur","Dall","Equipement Informatique","Ordinateur peu fiable","lolilol5.png");
-INSERT INTO objets (nom_objet,nom_proprietaire,categorie_objet,description_objet,img_objet) VALUES ("Quelque chose","Dall","Equipement Informatique","Ordinateur peu fiable","lolilol6.png");
