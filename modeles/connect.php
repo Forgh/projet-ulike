@@ -1,4 +1,4 @@
-<?php 
+<?php /*
 	//bdd local sous Wamp
 	try
 	{
@@ -8,16 +8,17 @@
 	catch (Exception $e)
 	{
 		die('Erreur : '. $e -> getMessage());
-	}
-/*
-	//BDD Free
+	}*/
+	 
+	 
+	//BDD Ovh
 	try
 	{
-		$bdd = new PDO('mysql:host=projet.ulike.sql.free.fr;dbname=projet_ulike','projet.ulike','1rstcircle');
+		$bdd = new PDO('mysql:host=mysql51-105.perso;dbname=projetsl-ulike','projetsl-ulike','1rstcircle');
 		$bdd-> exec('SET NAMES utf8'); //On indique le jeu de caractères
 	}
 	catch (Exception $e)
 	{
 		die('Erreur : '. $e -> getMessage());
-	}*/
+	}
 ?>

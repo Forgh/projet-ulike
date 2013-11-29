@@ -35,7 +35,7 @@
 		foreach($_POST as $key=>$value){
 			$_SESSION['ajout_ent.' . $key] = $value;
 		} 
-		header("Location: ../inscription.php");
+		header('Location: '.$SITE_BASE.'inscription.php');
 	}
 	
 	
