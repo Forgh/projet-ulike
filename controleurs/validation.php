@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
-
+	
 	<div id="bodycentered" >
 		<h2>Validation d'un compte</h2>
 		<?php 
@@ -31,6 +31,5 @@
 		<?php } ?>
 	</div>
 	
-
 </body>
 </html>
