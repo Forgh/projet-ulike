@@ -1,35 +1,19 @@
 <header>
-	<img id="logo" src="imgs/logos_ulike_small.png" />
-<div id="search">
-		<form method="GET" name="form-test" id="form-test" action="search_results.php" enctype="multipart/form-data" >
-		  	<input type="search" id="champ-texte" name="search" placeholder="Rechercher..." >
-            <input type="submit" id="bouton-submit">
-        </form>
-	</div>
+	<img id="logo" src="entete.jpg" />
 	<div id="connexion">
-	
-	
 		<?php
-			if(isset($_SESSION['login_entreprise']) || isset($_SESSION['pseudo_membre'])) {
+			if(isset($_SESSION['pseudo']) && isset($_SESSION['passwd'])) {
+				echo $_SESSION['pseudo'];
 			?>
-				
-				<div class="bouton header">
-					<a href="moncompte.php">Mon Compte</a>
-				</div> 
-				<div class="bouton header_out">
-					<a href="deconnexion.php">Se Déconnecter</a>
-				</div>
+				: <a href="moncompte.php">Mon Compte</a> - 
+				<a href="deconnexion.php">Se Déconnecter</a>
 		<?php } 
 			else {
 			?>
-				<div class="bouton header">
-					<a href="login.php"> Se Connecter </a>
-				</div>
-				<div class="bouton header">
-					<a href="inscription.php"> S'enregistrer</a>
-				</div>
+				<a href="login.php"> Se Connecter </a> / 
+				<a href="signup.php"> S'enregistrer</a>
 			<?php
 			}
 			?>
-	</div></div>
+	</div>
 </header>

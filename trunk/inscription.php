@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +32,11 @@
 
 </head>
 	<body>
-		<?php include("include/entete.php"); ?>
+		<header>
+			<div id="connexion">
+				<div class="bouton petit bleu" id="accueil">Accueil</div>
+			</div>	
+		</header>
 
 		<div id="bodycentered">
 			<div id="categorie">
@@ -50,10 +53,9 @@
 			<div id="infoUser">
 				<h2>Informations personnelles</h2>
 				<div class="moitieGauche">
-					<form action="controleurs/inscrire_membre.php" method="post" enctype="multipart/form-data" autocomplete="on">						
-						<label for="pseudo">Pseudonyme :<span class="obligatoire">*</span></label>
-						<input type="text" name="pseudo" title="Sera affiché sur vos commentaires. <br> Retenez-le, il servira à vous authentifier" class="pseudo"<?php if (isset($_SESSION['ajout_membre.pseudo']))
-																echo ' value="' . $_SESSION['ajout_membre.pseudo'] .'"'; ?>>
+					<form action="../controleur/inscrire.php" method="post" enctype="multipart/form-data" autocomplete="on">						
+						<label for="pseudo">Pseudo :<span class="obligatoire">*</span></label>
+						<input type="text" name="pseudo" title="Sera affiché sur vos commentaires. <br> Retenez-le, il servira à vous authentifier" class="pseudo">
 						
 						
 						<label for="passwd">Mot de passe :<span class="obligatoire">*</span></label>
@@ -62,36 +64,23 @@
 						<input type="password" title="Doit être identique à celui ci-dessus" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" onchange=" this.setCustomValidity(this.validity.patternMismatch ? 'Veuillez entrer un mot de passe identique à celui ci-dessus' : ''); " name="passwdconfirm" class="passwdconfirm">
 
 						<label for="mail">Email :<span class="obligatoire">*</span></label>
-						<input type="email" title="Doit être de la forme :<br>nom@domain.zone" name="mail" class="email"<?php if (isset($_SESSION['ajout_membre.mail']))
-																echo ' value="' . $_SESSION['ajout_membre.mail'] .'"'; ?>>
+						<input type="email" title="Doit être de la forme :<br>nom@domain.zone" name="mail" class="email">
 						
 						<label for="nom">Nom :</label>
-						<input type="text" title="Votre nom ne sera jamais publié<br>ni transmis" name="nom" id="nom"<?php if (isset($_SESSION['ajout_membre.nom']))
-																echo ' value="' . $_SESSION['ajout_membre.nom'] .'"'; ?>>
+						<input type="text" title="Votre nom ne sera jamais publié<br>ni transmis" name="nom" id="nom">
 						
 						<label for="prenom">Prénom :</label>
-						<input type="text" title="Votre prénom ne sera jamais publié<br>ni transmis" name="prenom" id="prenom"<?php if (isset($_SESSION['ajout_membre.prenom']))
-																echo ' value="' . $_SESSION['ajout_membre.prenom'] .'"'; ?>>
+						<input type="text" title="Votre prénom ne sera jamais publié<br>ni transmis" name="prenom" id="prenom">
 
 						
-						<label for="age">Date de naissance :</label>
-						<input type="text"  title="Votre âge ne sera utilisé<br>qu'à des fin statistiques" name="age" id="age"<?php if (isset($_SESSION['ajout_membre.dateN']))
-																echo ' value="' . $_SESSION['ajout_membre.dateN'] .'"'; ?>>
+						<label for="age">Age :</label>
+						<input type="text"  title="Votre âge ne sera utilisé<br>qu'à des fin statistiques" name="age" id="age">
 						
 						<label>Sexe:</label>
-						<SELECT  title="Cette information ne sera utilisé<br>qu'à des fin statistiques" id="sexe" name="sexe">
-							<?php 
-								$categorie = array('M', 'F', 'Autre');
-								$categorie_name = array('sexe_m', 'sexe_f', 'sexe_autre');
-								
-									for($i = 0; $i<count($categorie);$i++){
-										if (isset($_SESSION['ajout_membre.sexe']) and $_SESSION['ajout_membre.sexe'] == $categorie_name[i]){
-											echo '<option value="' . $categorie_name[$i] . '" selected >' . $categorie[$i] . '</OPTION>';
-										}else{
-											echo '<option value="' . $categorie_name[$i] . '">' . $categorie[$i] . '</OPTION>';
-										}
-									}
-							?>
+						<SELECT  title="Cette information ne sera utilisé<br>qu'à des fin statistiques" name="sexe">
+							<OPTION>M</OPTION>
+							<OPTION>F</OPTION>
+							<OPTION>Autre</OPTION>
 						</SELECT>
 						
 						<div class="msgObligatoire">Les champs notés avec un astérique rouge sont obligatoires.</div>
@@ -100,12 +89,8 @@
 					</form>
 				</div>
 				<div class="moitieDroite">
-				<p>
 					<span class="validateUsername"><?php if(isset($error)) { if ($error) { echo $error['msg']; }} ?></span>
-				</p>
-				<p>
 					<span class="validateEmail"><?php if(isset($error)) { if ($error) { echo $error['msg']; }} ?></span>
-				</p>
 				</div>
 				
 				
@@ -115,10 +100,9 @@
 			<div id="infoEntreprise">
 				<h2>Informations confidentielles</h2>
 				<div class="moitieGauche">
-					<form action="controleurs/inscrire_entreprise.php" method="post" enctype="multipart/form-data" autocomplete="on">
+					<form action="../controleur/inscrire.php" method="post" enctype="multipart/form-data" autocomplete="on">
 						<label for="pseudo">Nom de l'entreprise:<span class="obligatoire">*</span></label>
-						<input type="text" title="Sera affiché sur la description de vos objets <br> Retenez-le, il servira à vous authentifier" required name="pseudo" class="pseudo"<?php if (isset($_SESSION['ajout_ent.nom_ent']))
-																echo ' value="' . $_SESSION['ajout_ent.nom_ent'] .'"'; ?>>
+						<input type="text" title="Sera affiché sur la description de vos objets <br> Retenez-le, il servira à vous authentifier" required name="pseudo" class="pseudo">
 
 						<label for="passwd">Mot de passe :<span class="obligatoire">*</span></label>
 						<input type="password" title="Votre mot de passe doit comporter au moins : <br>- 1 majuscule,<br>- 1 minuscule, <br>- 1 chiffre" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" name="passwd" id="passwd" onchange=" this.setCustomValidity(this.validity.patternMismatch ? 'Votre mot de passe doit comporter au moins 1 majuscule, 1 minuscule et un chiffre' : ''); if(this.checkValidity()) form.passwordconfirm.pattern = this.value; ">
@@ -126,29 +110,23 @@
 						<input type="password" title="Doit être identique à celui ci-dessus" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" onchange=" this.setCustomValidity(this.validity.patternMismatch ? 'Veuillez entrer un mot de passe identique à celui ci-dessus' : ''); " name="passwdconfirm" class="passwdconfirm">
 
 						<label for="mail">Email :<span class="obligatoire">*</span></label>
-						<input type="email" title="Doit être de la forme :<br>nom@domain.zone" name="mail_ent" class="email" <?php if (isset($_SESSION['ajout_ent.mail_ent']))
-																echo ' value="' . $_SESSION['ajout_ent.mail_ent'] .'"'; ?>>
+						<input type="email" title="Doit être de la forme :<br>nom@domain.zone" name="mail_ent" class="email">
 						
 						<label for="siren">N° SIREN:<span class="obligatoire">*</span></label>
-						<input type="text" title="Sert à identifier votre entreprise<br>Cette information ne sera jamais publié" required name="siren" id="siren"<?php if (isset($_SESSION['ajout_ent.siren']))
-																echo ' value="' . $_SESSION['ajout_ent.siren'] .'"'; ?>>
+						<input type="text" title="Sert à identifier votre entreprise<br>Cette information ne sera jamais publié" required name="siren" id="siren">
 
 						<label for="nom_gerant">Nom du gérant<span class="obligatoire">*</span></label>
-						<input type="text" title="Sert à identifier votre entreprise<br>Cette information ne sera jamais publié" required name="nom_gerant" id="nom_gerant"<?php if (isset($_SESSION['ajout_ent.nom_gerant']))
-																echo ' value="' . $_SESSION['ajout_ent.nom_gerant'] .'"'; ?>>
+						<input type="text" title="Sert à identifier votre entreprise<br>Cette information ne sera jamais publié" required name="nom_gerant" id="nom_gerant">
 
 
 						<label for="adr_ent">Adresse:<span class="obligatoire">*</span></label>
-						<input type="text" required name="adr_ent" id="adr_ent"<?php if (isset($_SESSION['ajout_ent.adr_ent']))
-																echo ' value="' . $_SESSION['ajout_ent.adr_ent'] .'"'; ?>>
+						<input type="text" required name="adr_ent" id="adr_ent">
 
 						<label for="code_ent">Code postal:<span class="obligatoire">*</span></label>
-						<input type="text" required name="code_ent" id="code_ent"<?php if (isset($_SESSION['ajout_ent.code_ent']))
-																echo ' value="' . $_SESSION['ajout_ent.code_ent'] .'"'; ?>>
+						<input type="text" required name="code_ent" id="code_ent">
 
 						<label for="pays_ent">Pays:<span class="obligatoire">*</span></label>
-						<input type="text" required name="pays_ent" id="pays_ent"<?php if (isset($_SESSION['ajout_ent.pays_ent']))
-																echo ' value="' . $_SESSION['ajout_ent.pays_ent'] .'"'; ?>>
+						<input type="text" required name="pays_ent" id="pays_ent">
 						
 						<div class="msgObligatoire">Les champs notés avec un astérique rouge sont obligatoires.</div>
 
@@ -159,23 +137,21 @@
 					</form>
 				</div>
 				
-					<div class="moitieDroite">
-				<p>
+				<div class="moitieDroite">
 					<span class="validateUsername"><?php if(isset($error)) { if ($error) { echo $error['msg']; }} ?></span>
-				</p>
-				<p>
 					<span class="validateEmail"><?php if(isset($error)) { if ($error) { echo $error['msg']; }} ?></span>
-				</p>
 				</div>
-				
-				
 				
 			</div>
 		</div>
 		
 
-				<?php include("include/footer.php");?>
-
+		<footer>
+			<div id="footer_txt">
+				<div id="copyright">hello</div>
+			</div>
+		</footer>
+		
 		
 		
 	</body>
