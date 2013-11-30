@@ -35,15 +35,29 @@ function check_email($email) {
 }
 
 function email_taken($email){
- 	require('../modeles/connect.php');
-	$ok = true;
+	/*require('../modeles/Membre.php');
+	require('../modeles/Entreprise.php');
+
+	 $entreprise = Entreprise::getEntrepriseParEmail($email);
+	 $membre = Membre::getMembreParEmail($email);
+	 
+	 if(empty($entreprise) && empty($membre)){
+	 	return false;
+	 }
+	 else {
+	 	return true;
+	 }*/
+	 
+	 	require('../modeles/connect.php');
+					$ok = true;
 	
 	$req = $bdd -> prepare('SELECT *  FROM entreprises WHERE email_entreprise=?');
 	$req -> execute(array($email)) or $ok == false; 
-	$req2 = $bdd -> prepare('SELECT *  FROM membres WHERE email_membre=?');
-	$req2 -> execute(array($email)) or $ok == false;
+			$req2 = $bdd -> prepare('SELECT *  FROM membres WHERE email_membre=?');
+			$req2 -> execute(array($email)) or $ok == false;
 
-	return (($req->rowCount() >= 1) && $ok && ($req2->rowCount() >= 1));
+			return (($req->rowCount() >= 1) && $ok && ($req->rowCount() >= 1));
+				
 }	
 
 if (@$_REQUEST['action'] == 'check_email' && isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {

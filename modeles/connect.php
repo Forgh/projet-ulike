@@ -8,6 +8,9 @@
 	catch (Exception $e)
 	{
 		die('Erreur : '. $e -> getMessage());
+<<<<<<< .mine
+	}
+=======
 	}*/
 	 
 	 
@@ -21,4 +24,5 @@
 	{
 		die('Erreur : '. $e -> getMessage());
 	}
+>>>>>>> .r35
 ?>
