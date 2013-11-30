@@ -7,9 +7,10 @@
 	<link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
-
+	<?php include("../include/entete.php"); ?>
 	<div id="bodycentered" >
-			<?php
+		<h2>Etat de la validation</h2>
+		<?php
 			include('../include/commun.php');
 			include('../modeles/connect.php');
 
@@ -20,13 +21,11 @@
 			if ($Ent != null and isset($_POST["login_validation"]) and isset($_GET["id"])){
 				$activation = sha1($GRAINE . "ENT" .  $_POST["login_validation"]);
 				if ($_GET["id"] == $activation){
-					echo "<h2>Etat de la validation - Entreprise</h2>";
 					$Ent->setConfirmed();
 					echo "L'activation a réussie.";
 				}else{
 					//PAGE code invalide (ici le login est inexistant)
-					echo "<h2>Etat de la validation - Entreprise</h2>";
-					echo "L'activation a échoué: veuillez entrer des informations valide.";
+					echo "L'activation a échoué: veuillez entrer des informations valide. [ent]";
 				}
 				
 			}else{
@@ -38,24 +37,21 @@
 					$activation = sha1($GRAINE . "MEM" . $_POST["login_validation"]);
 					if ($_GET["id"] == $activation){
 						$Ent->setConfirmed();
-						echo "<h2>Etat de la validation - Membre</h2>";
 						echo "L'activation a réussie.";
 					}else{
 						//PAGE code invalide (ici le login est inexistant)
-						echo "<h2>Etat de la validation - Membre</h2>";
-						echo "L'activation a échoué: veuillez entrer des informations valide.";
+						echo "L'activation a échoué: veuillez entrer des informations valide. [mem]";
 					}
 					
 				
 				}else{
 					//PAGE activation echoue (ici c'est possible que le login soit inexistant)
-					echo "<h2>Erreur</h2>";
-					echo "L'activation a échoué: veuillez entrer des informations valide.";
+					echo "L'activation a échoué: veuillez entrer des informations valide. [compte inconnu]";
 				}
 			}
-			?>
+		?>
 	</div>
-		
-
+	
+	<?php include("../include/footer.php");?>
 </body>
 </html>
