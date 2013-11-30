@@ -4,7 +4,7 @@
 	require('modeles/Objet.php');
 	require('modeles/Note.php');
 	require('modeles/Like.php');
-	echo $id;
+	
 	$carac_objet=Objet::getObjetById($id);
 
 		echo 'lol';
