@@ -73,7 +73,7 @@
 				<input type="submit" id="afficher" value="En voir [+]...">
 			</form>
 </p>
-<div id="otherMarks"></div>
+<div id="otherMarks"><?php include('show_note.php'); ?></div>
 		</div>
 		
 		<?php include("include/footer.php");?>
