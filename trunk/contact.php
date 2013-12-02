@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="css/style-ulike.css" />
+		<link rel="stylesheet" href="css/style.css" />
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="scripts/jquery.qtip.min.js"></script>
 		<link rel="stylesheet" href="scripts/jquery.qtip.min.css" />
@@ -39,7 +40,7 @@
 							<p>
 								<label class="sujet" for="sujet"> Nom : </label>
 							</p>
-							<input type="text" title="Votre nom ne sera jamais communiqu�" class="sujet" name="sujet" />
+							<input type="text" title="Votre nom ne sera jamais communiqué" class="sujet" name="sujet" />
 						</div>
 						
 						<div id="fieldmail">

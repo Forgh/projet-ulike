@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" href="css/style-ulike.css" />
+		<link rel="stylesheet" href="css/style.css" />
 			   <link rel="stylesheet" href="css/css-drag.css" />
 		<script type="text/javascript" src="scripts/jquery.js"></script>
 		<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
@@ -47,32 +47,34 @@
 	<body>
 		<?php include("include/entete.php"); ?>
 		<div id="bodycentered" >
+			<h2>Ajoutez votre note :</h2>
 			<form  action="controleurs/post_note.php" method="post" enctype="multipart/form-data">
-			<fieldset>
-				<legend> Ajouter votre note : </legend>
 			
 				<p>
 					<ul id="reserve_like" class="connectedList"> 
-						<li><input name="" type="hidden" value="Ergonomie"/>Ergonomie</li>
-						<li><input name="" type="hidden" value="Design"/>Design</li>
-						<li><input name="" type="hidden" value="Ergonomie"/>Qualité/Prix</li>
+						<li><input name="" type="hidden" value="Ergonomie"/><img src="imgs/ergo.png" alt="Ergonomie"/></li>
+						<li><input name="" type="hidden" value="Design"/><img src="imgs/design.png" alt="Design"/></li>
+						<li><input name="" type="hidden" value="Qualité-Prix"/><img src="imgs/qualite-prix.png" alt="Rapport Qualité/Prix"</li>
 					</ul>
 				</p>
 				
-				
+				<div id="zoneenregistre">
 					<ul id="zonelike" class="connectedList"></ul>
 					<ul id="zonedislike" class="connectedList"></ul>
-				
-				
+				</div>
+				<div id="zonecommentaire">
 				<p>
 					<label for="commentaire">Commentaire : </label>
+				</p>
+				<p>
 					<textarea id="commentaire" name="commentaire" placeholder="Quelque chose à rajouter ? Ajoutez ici votre commentaire !"></textarea>
 				</p>
+				</div>
 					
 				<p>
-					<input type="submit" value="Envoyer"/>
+					<input class="center" type="submit" value="Envoyer"/>
 				</p>
-			</fieldset>
+		
 			</form>
 		</div>
 		

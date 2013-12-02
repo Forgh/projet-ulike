@@ -22,6 +22,10 @@
 			return $this->nom;
 		}
 
+		public function setNom($v) { //un setter
+			$this->nom  = $v;
+		}
+		
 		public function getPrenom() { //un getter
 			return $this->prenom;
 		}
@@ -46,8 +50,33 @@
 			return $this->hashCode;
 		}
 		
+		public function setPrenom($v) { 
+			 $this->prenom=$v;
+		}
+
+		public function setEmail($v) { 
+			 $this->email=$v;
+		}
+
+		public function setHashCode($v) { 
+			 $this->hashCode=$v;
+		}
+
+		public function setAge($v) { 
+			 $this->age=$v;
+		}
+
+		public function setSexe($v) { 
+			 $this->sexe=$v;
+		}
+
+		public function setPasswd($v) { 
+			 $this->hashCode=$v;
+		}
+		
 		public function isEmailConfirmed() { //un getter
-			if ($this->emailConfirme == 0){
+		
+			if ($this->emailConfirme == 1){
 				return true;
 			}else{
 				return false;	
@@ -60,6 +89,7 @@
 			$this->email = $email;
 			$this->hashCode = $passwd;
 			$this->age = $age;
+			$this->prenom = $prenom;
 			$this->sexe = $sexe;
 			$this->emailConfirme = $emailConfirme;
 			//$this->id = (mysql_query("SELECT MAX(id_membre) FROM likes") or die("Erreur => MAX Objets.construct($id)"))+1;
@@ -79,7 +109,7 @@
 
 		public function save() {
 				global $bdd;
-				$nouveau_membre = $bdd -> prepare('INSERT INTO membres(pseudo_membre, passwd_membre, email_membre, confirmed_email, nom_membre, prenom_membre, age_membre, sexe_membre) VALUES (:pseudo_membre, :passwd_membre, :email_membre, :confirmed_email, :nom_membre, :prenom_membre, :age_membre, :sexe_membre)');
+				$nouveau_membre = $bdd -> prepare('INSERT INTO membres(pseudo_membre, passwd_membre, email_membre, confirmed_email, nom_membre, prenom_membre, date_naissance_membre, sexe_membre) VALUES (:pseudo_membre, :passwd_membre, :email_membre, :confirmed_email, :nom_membre, :prenom_membre, :date_naissance_membre, :sexe_membre)');
 				$nouveau_membre -> execute(array(
 								'pseudo_membre' => $this->pseudo, 
 								'passwd_membre' => $this->hashCode, 
@@ -87,7 +117,22 @@
 								'confirmed_email' => $this->emailConfirme, 
 								'nom_membre'=> $this->nom, 
 								'prenom_membre'=>$this->prenom, 
-								'age_membre'=> $this->age, 
+								'date_naissance_membre'=> $this->age, 
+								'sexe_membre'=> $this->sexe
+								));
+		}
+		
+		public function update() {
+				global $bdd;
+				$nouveau_membre = $bdd -> prepare('UPDATE membres SET passwd_membre = :passwd_membre, email_membre = :email_membre, confirmed_email = :confirmed_email, nom_membre = :nom_membre, prenom_membre = :prenom_membre, date_naissance_membre = :date_naissance_membre, sexe_membre = :sexe_membre WHERE pseudo_membre=:pseudo_membre');
+				$nouveau_membre -> execute(array(
+								'pseudo_membre' => $this->pseudo, 
+								'passwd_membre' => $this->hashCode, 
+								'email_membre' => $this->email, 
+								'confirmed_email' => $this->emailConfirme, 
+								'nom_membre'=> $this->nom, 
+								'prenom_membre'=>$this->prenom, 
+								'date_naissance_membre'=> $this->age, 
 								'sexe_membre'=> $this->sexe
 								));
 		}
@@ -98,10 +143,12 @@
 			$req -> execute(array($pseudo));
 			
 			if($req->rowCount() == 0) return null;
-			$tuple =  $req->fetch();
+			$tuple =  $req->fetch(); //(PDO::FETCH_OBJ);
 			
-			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['confirmed_email'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['prenom_membre'], $tuple['age_membre'], $tuple['sexe_membre'], $tuple['id_membre']);
-		}	
+			//echo "?", $tuple['pseudo_membre'],"?";
+			
+			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['confirmed_email']);
+		}
 		
 		public static function getMembreParEmail ($email){
 			global $bdd;
@@ -111,7 +158,7 @@
 			if($req->rowCount() == 0) return null;
 			$tuple =  $req->fetch();
 			
-			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['confirmed_email'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['prenom_membre'], $tuple['age_membre'], $tuple['sexe_membre'], $tuple['id_membre']);
+			return new Membre($tuple['pseudo_membre'], $tuple['passwd_membre'], $tuple['email_membre'], $tuple['nom_membre'], $tuple['prenom_membre'], $tuple['date_naissance_membre'], $tuple['sexe_membre'], $tuple['confirmed_email']);
 		}	
 		
 		public function setConfirmed() {
@@ -124,9 +171,10 @@
 			global $bdd;
 			$ok = true;
 			$req = $bdd -> prepare('SELECT * FROM membres WHERE pseudo_membre=?');
-			$req -> execute(array($nom)) or $ok == false;
+			$req -> execute(array($nom));
+			$ret = $req->fetchAll();
 
-			return ($req->rowCount() >= 1) && $ok;
+			return (count($ret)!=0); // erreur
 		}	
 		
 	}
