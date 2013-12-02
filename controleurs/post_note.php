@@ -19,4 +19,7 @@
 		$dislike = new Like($value, $id_auteur, 0);
 		$dislike->save();
 	}
+	
+	header( 'Location: http://projet.ulike.free.fr/post_ajout_userinput.php');
+
 ?>

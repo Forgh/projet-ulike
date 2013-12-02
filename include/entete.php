@@ -1,5 +1,5 @@
 <header>
-	<img id="logo" src="imgs/logos_ulike_small.png" alt=""/>
+	<img id="logo" src="imgs/logos_ulike_small.png" />
 <div id="search">
 		<form method="GET" name="form-test" id="form-test" action="search_results.php" enctype="multipart/form-data" >
 		  	<input type="search" id="champ-texte" name="search" placeholder="Rechercher..." >
@@ -31,5 +31,5 @@
 			<?php
 			}
 			?>
-	</div>
+	</div></div>
 </header>

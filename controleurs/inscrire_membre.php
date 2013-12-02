@@ -11,10 +11,8 @@
 
 	$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
 	
-	$megacondition = ($nb == 0 and empty($_POST['pseudo'])==false and empty($_POST['passwd'])==false and empty($_POST['passwdconfirm'])==false and $_POST['passwd'] == $_POST['passwdconfirm']);// and (preg_match("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$",$_POST['passwd']));
-	$megacondition = $megacondition  and empty($_POST['nom'])==false and empty($_POST['mail'])==false  and !preg_match($regex, $_POST['mail'])  and empty($_POST['prenom'])==false;
-	$megacondition = $megacondition and   empty($_POST['age'])==false and empty($_POST['sexe'])==false;
-	
+	$megacondition = ($nb == 0 and empty($_POST['pseudo'])==false and empty($_POST['passwd'])==false and empty($_POST['passwdconfirm'])==false and $_POST['passwd'] == $_POST['passwdconfirm'] and empty($_POST['nom'])==false and empty($_POST['mail'])==false  and !preg_match($regex, $_POST['mail'])  and empty($_POST['prenom'])==false and empty($_POST['age'])==false and empty($_POST['sexe'])==false);// and (preg_match("(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$",$_POST['passwd']));
+
 	if ($megacondition){// on verif que l'objet est nouveau
 		if ($_POST['sexe'] == "sexe_m"){
 			$sexe = 'M';
@@ -38,13 +36,12 @@
 		echo "Veuillez utiliser le mail d'activation pour continuer.";
 	}
 	
-
 	if ($ret == false and $megacondition == false){
 		//ici on trouve la raison et on modifie la page d'inscription
 		
 		foreach($_POST as $key=>$value){
 			$_SESSION['ajout_ent.' . $key] = $value;
 		} 
-		header('Location : '.$SITE_BASE.'inscription.php');
+		header('Location: '.$SITE_BASE.'inscription.php');
 	}
 ?>
